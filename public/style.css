@@ -1,0 +1,458 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --paper: #F8F4ED;
+  --ink: #1A1A1A;
+  --seal: #C41E3A;
+  --gray: #6B6B6B;
+  --line: #E5DED3;
+}
+
+body {
+  font-family: 'Noto Serif', 'SimSun', serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.app-container {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #FFFCF7;
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.06);
+}
+
+.app-header {
+  padding: 36px 28px 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.app-title {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 8px;
+}
+
+.todo-input-section {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--gray);
+  font-family: 'Noto Serif', serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toggle-btn .material-icons {
+  font-size: 14px;
+}
+
+.toggle-btn[data-active="1"] {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: rgba(26, 26, 26, 0.05);
+}
+
+#todo-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  font-family: 'Noto Serif', serif;
+  font-size: 14px;
+  background: transparent;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+#todo-input:focus {
+  outline: none;
+  border-bottom-color: var(--ink);
+}
+
+#todo-input::placeholder {
+  color: #B0A898;
+  font-style: italic;
+}
+
+#priority-select,
+#due-date-input {
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  background: transparent;
+  color: var(--gray);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+}
+
+#priority-select {
+  min-width: 55px;
+}
+
+#due-date-input {
+  min-width: 125px;
+}
+
+.add-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.add-btn:hover {
+  background: var(--ink);
+  color: #FFFCF7;
+}
+
+.add-btn .material-icons {
+  font-size: 18px;
+}
+
+.filter-tabs {
+  display: flex;
+  padding: 10px 28px;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  color: var(--gray);
+  font-family: 'Noto Serif', serif;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 1px;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+.quadrant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line);
+}
+
+.quadrant {
+  background: #FFFCF7;
+  min-height: 120px;
+}
+
+.quadrant-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 6px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.q-label {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.q-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+}
+
+.q1 .q-label { color: var(--seal); }
+.q2 .q-label { color: #2C5F8A; }
+.q3 .q-label { color: #8B7D3C; }
+.q4 .q-label { color: var(--gray); }
+
+.todo-list {
+  list-style: none;
+  padding: 2px 0;
+  min-height: 40px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px dashed var(--line);
+  transition: background 0.15s;
+  cursor: grab;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-item:hover {
+  background: rgba(248, 244, 237, 0.6);
+}
+
+.todo-item.dragging {
+  opacity: 0.3;
+}
+
+.todo-item.completed .todo-title {
+  text-decoration: none;
+  color: var(--gray);
+}
+
+.drag-handle {
+  color: var(--line);
+  font-size: 14px;
+  margin-top: 2px;
+  cursor: grab;
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.drag-handle:hover {
+  color: var(--gray);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.todo-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s;
+  flex-shrink: 0;
+  margin-top: 1px;
+  position: relative;
+}
+
+.todo-checkbox:hover {
+  border-color: var(--seal);
+}
+
+.todo-checkbox.checked {
+  background: var(--seal);
+  border-color: var(--seal);
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.todo-checkbox.checked::after {
+  content: '印';
+  color: #FFFCF7;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 9px;
+  line-height: 1;
+}
+
+.todo-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-title {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.todo-title-input {
+  width: 100%;
+  padding: 2px 0;
+  border: none;
+  border-bottom: 1px solid var(--seal);
+  font-family: 'Noto Serif', serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: transparent;
+}
+
+.todo-meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  align-items: center;
+}
+
+.quadrant-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border: 1px solid;
+}
+
+.q1 .quadrant-tag { color: var(--seal); border-color: var(--seal); }
+.q2 .quadrant-tag { color: #2C5F8A; border-color: #2C5F8A; }
+.q3 .quadrant-tag { color: #8B7D3C; border-color: #8B7D3C; }
+.q4 .quadrant-tag { color: var(--gray); border-color: var(--gray); }
+
+.due-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+}
+
+.due-date.overdue {
+  color: var(--seal);
+  font-weight: 500;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.todo-item:hover .todo-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  color: var(--gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.action-btn .material-icons {
+  font-size: 15px;
+}
+
+.action-btn:hover {
+  color: var(--ink);
+}
+
+.action-btn.delete:hover {
+  color: var(--seal);
+}
+
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  grid-column: 1 / -1;
+}
+
+.empty-state.visible {
+  display: flex;
+}
+
+.empty-text {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 24px;
+  color: var(--line);
+  letter-spacing: 4px;
+}
+
+.empty-sub {
+  font-size: 12px;
+  color: #C8C0B4;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px 8px;
+  }
+
+  .app-header {
+    padding: 24px 16px 20px;
+  }
+
+  .app-title {
+    font-size: 32px;
+    letter-spacing: 4px;
+  }
+
+  .todo-input-section {
+    padding: 14px 16px;
+  }
+
+  .input-group {
+    flex-wrap: wrap;
+  }
+
+  #todo-input {
+    width: 100%;
+  }
+
+  #due-date-input {
+    flex: 1;
+  }
+
+  .quadrant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .todo-item {
+    padding: 10px 12px;
+  }
+
+  .todo-actions {
+    opacity: 1;
+  }
+}

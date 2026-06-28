@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>待办</title>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1 class="app-title">待办</h1>
+    </header>
+
+    <div class="todo-input-section">
+      <div class="input-group">
+        <input type="text" id="todo-input" placeholder="写下来，才不会忘..." maxlength="200">
+        <input type="date" id="due-date-input">
+        <button id="add-btn" class="add-btn">
+          <span class="material-icons">add</span>
+        </button>
+      </div>
+      <div class="toggle-group">
+        <button class="toggle-btn" id="toggle-important" data-active="0">
+          <span class="material-icons">star</span> 重要
+        </button>
+        <button class="toggle-btn" id="toggle-urgent" data-active="0">
+          <span class="material-icons">schedule</span> 紧急
+        </button>
+      </div>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="tab active" data-filter="all">全部</button>
+      <button class="tab" data-filter="active">待做</button>
+      <button class="tab" data-filter="completed">已毕</button>
+    </div>
+
+    <div id="quadrant-grid" class="quadrant-grid">
+      <div class="quadrant q1" data-q="q1">
+        <div class="quadrant-header"><span class="q-label">立即做</span><span class="q-count" id="q1-count">0</span></div>
+        <ul class="todo-list" id="q1-list"></ul>
+      </div>
+      <div class="quadrant q2" data-q="q2">
+        <div class="quadrant-header"><span class="q-label">安排做</span><span class="q-count" id="q2-count">0</span></div>
+        <ul class="todo-list" id="q2-list"></ul>
+      </div>
+      <div class="quadrant q3" data-q="q3">
+        <div class="quadrant-header"><span class="q-label">委托做</span><span class="q-count" id="q3-count">0</span></div>
+        <ul class="todo-list" id="q3-list"></ul>
+      </div>
+      <div class="quadrant q4" data-q="q4">
+        <div class="quadrant-header"><span class="q-label">尽量删</span><span class="q-count" id="q4-count">0</span></div>
+        <ul class="todo-list" id="q4-list"></ul>
+      </div>
+      <div id="empty-state" class="empty-state">
+        <p class="empty-text">空空如也</p>
+        <p class="empty-sub">上方添一笔</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
