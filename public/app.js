@@ -3,6 +3,7 @@ const API_URL = '/api/todos';
 let todos = [];
 let currentFilter = 'all';
 let draggedItem = null;
+let stats = { total: 0, completed: 0 };
 
 const todoInput = document.getElementById('todo-input');
 const dueDateInput = document.getElementById('due-date-input');
@@ -20,6 +21,25 @@ async function fetchTodos() {
     renderTodos();
   } catch (error) {
     console.error('Failed to fetch todos:', error);
+  }
+}
+
+async function fetchStats() {
+  try {
+    const response = await fetch(`${API_URL}/stats`);
+    stats = await response.json();
+    updateStatsSummary();
+  } catch (error) {
+    console.error('Failed to fetch stats:', error);
+  }
+}
+
+function updateStatsSummary() {
+  const el = document.getElementById('stats-summary');
+  if (stats.total === 0) {
+    el.textContent = '';
+  } else {
+    el.textContent = `共 ${stats.total} 项 · 已完成 ${stats.completed} 项`;
   }
 }
 
@@ -46,6 +66,7 @@ async function addTodo() {
       toggleUrgent.dataset.active = '0';
       updateToggleStyles();
       await fetchTodos();
+      await fetchStats();
     }
   } catch (error) {
     console.error('Failed to add todo:', error);
@@ -60,6 +81,7 @@ async function toggleTodo(id, completed) {
       body: JSON.stringify({ completed: completed ? 1 : 0 })
     });
     await fetchTodos();
+    await fetchStats();
   } catch (error) {
     console.error('Failed to update todo:', error);
   }
@@ -69,6 +91,7 @@ async function deleteTodo(id) {
   try {
     await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
     await fetchTodos();
+    await fetchStats();
   } catch (error) {
     console.error('Failed to delete todo:', error);
   }
@@ -82,6 +105,7 @@ async function updateTodo(id, fields) {
       body: JSON.stringify(fields)
     });
     await fetchTodos();
+    await fetchStats();
   } catch (error) {
     console.error('Failed to update todo:', error);
   }
@@ -354,3 +378,4 @@ tabs.forEach(tab => {
 
 updateToggleStyles();
 fetchTodos();
+fetchStats();

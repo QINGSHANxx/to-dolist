@@ -41,6 +41,14 @@ body {
   letter-spacing: 8px;
 }
 
+.stats-summary {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
 .todo-input-section {
   padding: 20px 28px;
   border-bottom: 1px solid var(--line);
@@ -80,6 +88,18 @@ body {
   border-color: var(--ink);
   color: var(--ink);
   background: rgba(26, 26, 26, 0.05);
+}
+
+#toggle-important[data-active="1"] {
+  border-color: #2C5F8A;
+  color: #2C5F8A;
+  background: rgba(44, 95, 138, 0.08);
+}
+
+#toggle-urgent[data-active="1"] {
+  border-color: #8B7D3C;
+  color: #8B7D3C;
+  background: rgba(139, 125, 60, 0.08);
 }
 
 #todo-input {
